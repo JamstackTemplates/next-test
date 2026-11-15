@@ -1,0 +1,9 @@
+{
+  "name": "Jamstacks test website",
+  "description": "A static Next.js website for testing Jamstacks components.",
+  "domain": "",
+  "jamstacks": {
+    "siteId": "",
+    "cdnUrl": "https://cdn.jamstacks.net"
+  }
+}
