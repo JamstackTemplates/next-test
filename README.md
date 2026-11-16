@@ -17,7 +17,7 @@ Open http://localhost:3000. With no site ID configured, the page shows **Ready t
 
 The header uses `DarkModeToggle` from the published `jamstacks` React package. It follows the device initially, then saves an explicit light/dark choice in this origin's `color-scheme` localStorage key and synchronizes other tabs. `ThemeProvider` shares the state; `ThemeScript` in the root layout applies the saved choice before the first paint. No component stylesheet is required.
 
-The page palette and inherited support-form fallback colours stay in `app/globals.css`; published component themes may override those fallbacks. The media-query fallback still follows the device without JavaScript. To resume following the device, remove the `color-scheme` localStorage key and reload.
+Styling uses Tailwind CSS v4: the page uses utility classes such as `bg-surface text-ink`, built from the `--page-*` colour tokens; Tailwind's default palette is switched off. The page palette and inherited support-form fallback colours stay in `app/tailwind.input.css`; published component themes may override those fallbacks. The media-query fallback still follows the device without JavaScript. To resume following the device, remove the `color-scheme` localStorage key and reload.
 
 `jamstacks/config.json` is the Jamstacks gallery manifest. Its screenshot theme strategy uses the same `prefers-color-scheme` media preference.
 
@@ -61,7 +61,7 @@ The template uses `next/script` to load this script after hydration, once the mo
 
 The page reports script loading and network errors. **Script loaded** only confirms that the script was fetched and executed; it does not confirm a working form, API, or accepted submission. A non-empty site ID will attempt to fetch the embed, so until the CDN service is available, leave it empty or use a local test server with `NEXT_PUBLIC_JAMSTACKS_CDN_URL=http://localhost:4100`.
 
-Example shared CSS tokens are declared in `app/globals.css`: `--jamstacks-font-family`, `--jamstacks-color-primary`, `--jamstacks-color-background`, `--jamstacks-color-text`, and `--jamstacks-border-radius`. The embed should honor these through inheritance (including on a shadow host) and may publish its own values. Component-specific tokens can extend these later. No React library is required on the embed side.
+Example shared CSS tokens are declared in `app/tailwind.input.css`: `--jamstacks-font-family`, `--jamstacks-color-primary`, `--jamstacks-color-background`, `--jamstacks-color-text`, and `--jamstacks-border-radius`. The embed should honor these through inheritance (including on a shadow host) and may publish its own values. Component-specific tokens can extend these later. No React library is required on the embed side.
 
 ## GitHub Pages
 

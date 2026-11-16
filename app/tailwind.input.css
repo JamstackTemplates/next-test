@@ -1,0 +1,99 @@
+/* next-test styles: Tailwind CSS v4 plus this fixture's customizations.
+   Components use Tailwind utility classes; this file holds the light/dark colour tokens,
+   the Tailwind theme built from them, base element styles and the shared --jamstacks-* fallbacks.
+   Host-page tokens use the --page- prefix; shared component tokens use --jamstacks-. */
+@import 'tailwindcss';
+
+/* `dark:` follows the jamstacks theme toggle (html.dark). Prefer colour tokens instead. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --page-background: #f5f5f0;
+  --page-surface: #ffffff;
+  --page-ink: #202b26;
+  --page-muted: #647069;
+  --page-line: #dfe4dc;
+  --page-accent: #326147;
+  --page-inset: #fafbf8;
+  --page-note: #f1f5ef;
+  --page-on-ink: #ffffff;
+  --page-danger: #a03530;
+  --page-status-halo: #32614712;
+  /* Local fallbacks for shared component tokens; published widget styles may override them. */
+  --jamstacks-font-family: Arial, Helvetica, sans-serif;
+  --jamstacks-color-primary: #326147;
+  --jamstacks-color-background: var(--page-surface);
+  --jamstacks-color-text: var(--page-ink);
+  --jamstacks-border-radius: 12px;
+}
+
+/* Explicit choices override the device; media fallback also works without JavaScript. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --page-background: #151c18;
+    --page-surface: #1e2822;
+    --page-ink: #e5ede7;
+    --page-muted: #acb9af;
+    --page-line: #3e5144;
+    --page-accent: #9ad5ae;
+    --page-inset: #19231d;
+    --page-note: #26392c;
+    --page-on-ink: #151c18;
+    --page-danger: #ffa49d;
+    --page-status-halo: #9ad5ae20;
+    /* Keep white text on hosted form buttons readable. */
+    --jamstacks-color-primary: #326147;
+  }
+}
+
+:root.dark {
+  color-scheme: dark;
+  --page-background: #151c18;
+  --page-surface: #1e2822;
+  --page-ink: #e5ede7;
+  --page-muted: #acb9af;
+  --page-line: #3e5144;
+  --page-accent: #9ad5ae;
+  --page-inset: #19231d;
+  --page-note: #26392c;
+  --page-on-ink: #151c18;
+  --page-danger: #ffa49d;
+  --page-status-halo: #9ad5ae20;
+  /* Keep white text on hosted form buttons readable. */
+  --jamstacks-color-primary: #326147;
+}
+
+/* Only this fixture's palette exists; Tailwind's default colours are switched off. */
+@theme {
+  --color-*: initial;
+  --breakpoint-sm: 43.75rem;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+@theme inline {
+  --color-bg: var(--page-background);
+  --color-surface: var(--page-surface);
+  --color-ink: var(--page-ink);
+  --color-muted: var(--page-muted);
+  --color-line: var(--page-line);
+  --color-accent: var(--page-accent);
+  --color-inset: var(--page-inset);
+  --color-note: var(--page-note);
+  --color-on-ink: var(--page-on-ink);
+  --color-danger: var(--page-danger);
+  --color-halo: var(--page-status-halo);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { color: var(--page-ink); background: var(--page-background); font-family: var(--font-sans); line-height: normal; -webkit-font-smoothing: antialiased; }
+  a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  a:hover { color: var(--page-accent); }
+  a:focus-visible { outline: 3px solid var(--page-accent); outline-offset: 5px; border-radius: 3px; }
+  code { font-family: var(--font-mono); font-size: .86em; overflow-wrap: anywhere; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

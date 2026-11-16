@@ -10,6 +10,9 @@ This is the internal static Next.js integration template for Jamstacks. Keep it 
 - Preserve both project URL (`/repo/`) and custom-domain (`/`) deployment support.
 - Keep the CDN embed contract documented in README.md. It is provisional until implemented by jamstacks.net.
 - Shared component CSS variables use the `--jamstacks-` prefix. Host-page styles use `--page-`.
+- Style with Tailwind CSS v4 utility classes. `app/tailwind.input.css` holds the `--page-*` colour tokens
+  (light plus two identical dark blocks) and maps them in `@theme inline` (`bg-surface`, `text-muted`...);
+  add a colour there rather than hard-coding values in components.
 - Read the relevant installed Next.js guides in `node_modules/next/dist/docs/` before changing framework behavior.
 - Validate with `npm test`, `npm run typecheck`, and `npm run build`. Changes to deployment paths also need a build with `PAGES_BASE_PATH=/next-test`.
 

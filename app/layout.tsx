@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { ThemeProvider } from 'jamstacks';
 import { ThemeScript } from 'jamstacks/server';
 import { site } from '../lib/site';
-import './globals.css';
+import './tailwind.input.css';
 
 export const metadata: Metadata = {
   title: site.name,

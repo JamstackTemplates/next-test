@@ -8,22 +8,22 @@ export function SupportEmbed() {
   const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   return (
-    <div className="embed-region">
+    <div className="min-h-[290px] p-[21px] sm:p-[25px]">
       {!site.embedUrl ? (
-        <div className="embed-message">
-          <span className="message-symbol" aria-hidden="true">+</span>
-          <h3>Ready to connect</h3>
-          <p>Set the public site ID in <code>site.config.json</code> or the <code>JAMSTACKS_SITE</code> environment variable, then rebuild.</p>
-          <p className="small-copy">No embed request is made until a site ID is configured.</p>
+        <div className="rounded-[10px] border border-dashed border-line bg-inset p-6">
+          <span className="mb-[18px] grid size-[30px] place-items-center rounded-lg border border-line bg-surface text-[21px] text-accent" aria-hidden="true">+</span>
+          <h3 className="mb-2.5 text-base font-medium">Ready to connect</h3>
+          <p className="text-[13px] leading-[1.7] text-muted">Set the public site ID in <code>site.config.json</code> or the <code>JAMSTACKS_SITE</code> environment variable, then rebuild.</p>
+          <p className="mt-3.5 text-[11px] leading-[1.7] text-muted">No embed request is made until a site ID is configured.</p>
         </div>
       ) : (
         <>
-          <p className={`embed-status ${status === 'error' ? 'is-error' : ''}`} role="status" aria-live="polite">
+          <p className={`mb-4 text-[13px] leading-[1.6] ${status === 'error' ? 'text-danger' : 'text-accent'}`} role="status" aria-live="polite">
             {status === 'loading' && 'Loading the CDN embed…'}
             {status === 'loaded' && 'Embed script loaded. Form rendering and submission are handled by the component.'}
             {status === 'error' && 'The embed script could not be loaded. Check that the site is published and the CDN URL is reachable, then reload.'}
           </p>
-          <div className="embed-address"><span>Script source</span><code>{site.embedUrl}</code></div>
+          <div className="mb-6 text-xs leading-[1.7]"><span className="block text-muted">Script source</span><code>{site.embedUrl}</code></div>
         </>
       )}
 
