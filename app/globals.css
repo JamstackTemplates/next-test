@@ -19,9 +19,9 @@
   --jamstacks-border-radius: 12px;
 }
 
-/* Follow the device preference, matching the gallery's media theme strategy. */
+/* Explicit choices override the device; media fallback also works without JavaScript. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     color-scheme: dark;
     --page-background: #151c18;
     --page-surface: #1e2822;
@@ -39,6 +39,23 @@
   }
 }
 
+:root.dark {
+  color-scheme: dark;
+  --page-background: #151c18;
+  --page-surface: #1e2822;
+  --page-ink: #e5ede7;
+  --page-muted: #acb9af;
+  --page-line: #3e5144;
+  --page-accent: #9ad5ae;
+  --page-inset: #19231d;
+  --page-note: #26392c;
+  --page-on-ink: #151c18;
+  --page-danger: #ffa49d;
+  --page-status-halo: #9ad5ae20;
+  /* Keep white text on hosted form buttons readable. */
+  --jamstacks-color-primary: #326147;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--page-ink); background: var(--page-background); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -48,6 +65,7 @@ a:focus-visible { outline: 3px solid var(--page-accent); outline-offset: 5px; bo
 code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .86em; overflow-wrap: anywhere; }
 .page { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
 .header { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--page-line); }
+.header-actions { display: flex; align-items: center; gap: 18px; margin-left: auto; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 16px; font-weight: 700; letter-spacing: -.4px; }
 .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; padding-bottom: 4px; border-radius: 9px; background: var(--page-ink); color: var(--page-on-ink); font-size: 27px; letter-spacing: -2px; }
 .muted { color: var(--page-muted); font-weight: 400; }
@@ -86,7 +104,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
 footer a { text-decoration: none; }
 @media (max-width: 700px) {
   .page { padding: 0 22px; }
-  .header { min-height: 80px; gap: 16px; }
+  .header { min-height: 80px; gap: 16px; flex-wrap: wrap; padding-block: 18px; }
+  .brand { flex-shrink: 0; }
   .brand { font-size: 14px; gap: 9px; }
   .brand-mark { width: 30px; height: 30px; }
   .source-link { font-size: 11px; }

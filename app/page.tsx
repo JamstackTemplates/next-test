@@ -1,3 +1,4 @@
+import { DarkModeToggle } from 'jamstacks';
 import { SupportEmbed } from '../components/support-embed';
 import { site } from '../lib/site';
 
@@ -9,7 +10,10 @@ export default function Home() {
           <span className="brand-mark" aria-hidden="true">j.</span>
           <span>jamstacks<span className="muted"> / next-test</span></span>
         </a>
-        <a className="source-link" href={site.repositoryUrl}>Source repository <span aria-hidden="true">↗</span></a>
+        <div className="header-actions">
+          <a className="source-link" href={site.repositoryUrl}>Source repository <span aria-hidden="true">↗</span></a>
+          <DarkModeToggle />
+        </div>
       </header>
 
       <main id="top">

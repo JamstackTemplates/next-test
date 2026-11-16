@@ -15,7 +15,9 @@ Open http://localhost:3000. With no site ID configured, the page shows **Ready t
 
 ## Appearance
 
-The page follows the device's light/dark preference automatically, including live preference changes. The palette and inherited support-form fallback colours are defined in `app/globals.css`; published component themes may override those fallbacks. No JavaScript or saved theme setting is needed.
+The header uses `DarkModeToggle` from the published `jamstacks` React package. It follows the device initially, then saves an explicit light/dark choice in this origin's `color-scheme` localStorage key and synchronizes other tabs. `ThemeProvider` shares the state; `ThemeScript` in the root layout applies the saved choice before the first paint. No component stylesheet is required.
+
+The page palette and inherited support-form fallback colours stay in `app/globals.css`; published component themes may override those fallbacks. The media-query fallback still follows the device without JavaScript. To resume following the device, remove the `color-scheme` localStorage key and reload.
 
 `jamstacks.json` is the Jamstacks gallery manifest. Its screenshot theme strategy uses the same `prefers-color-scheme` media preference.
 
