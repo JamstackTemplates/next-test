@@ -12,3 +12,11 @@ This is the internal static Next.js integration template for Jamstacks. Keep it 
 - Shared component CSS variables use the `--jamstacks-` prefix. Host-page styles use `--page-`.
 - Read the relevant installed Next.js guides in `node_modules/next/dist/docs/` before changing framework behavior.
 - Validate with `npm test`, `npm run typecheck`, and `npm run build`. Changes to deployment paths also need a build with `PAGES_BASE_PATH=/next-test`.
+
+## Template publishing assets
+
+- `jamstacks/` contains optional source-template metadata, gallery captures and their checks.
+- Read `jamstacks/config.json`; capture evidence is `jamstacks/screenshots.json` and JPEGs stay directly inside `jamstacks/`.
+- Run `node --test jamstacks/config.test.mjs` only when maintaining a source template.
+- Customer websites can remove this entire folder. Normal tests, website code, builds and the Pages workflow must not import it.
+- Keep `site.config.json`, embed integration and the Pages workflow outside the optional folder.

@@ -19,7 +19,7 @@ The header uses `DarkModeToggle` from the published `jamstacks` React package. I
 
 The page palette and inherited support-form fallback colours stay in `app/globals.css`; published component themes may override those fallbacks. The media-query fallback still follows the device without JavaScript. To resume following the device, remove the `color-scheme` localStorage key and reload.
 
-`jamstacks.json` is the Jamstacks gallery manifest. Its screenshot theme strategy uses the same `prefers-color-scheme` media preference.
+`jamstacks/config.json` is the Jamstacks gallery manifest. Its screenshot theme strategy uses the same `prefers-color-scheme` media preference.
 
 ## Public website configuration
 
@@ -105,3 +105,21 @@ The last three integration checks require the Jamstacks component service, which
 ## Jamstacks provisioning correlation
 
 The Pages workflow accepts optional `provisioning_id` and names the run `Jamstacks <id>`. Jamstacks dispatches only after reviewing the generated workflow, configuring Pages and publishing the initial component. The mount includes `data-jamstacks-site` so independent sites can coexist safely on one page. The shared support runtime now exists in the Jamstacks application; local fixture and remote GitHub/R2 acceptance remain separate verification lanes. These workflow changes must be reviewed and explicitly published before real template generation can use them.
+
+## Optional template publishing folder
+
+`jamstacks/` is used only to publish this source template in the Jamstacks gallery:
+
+```text
+jamstacks/config.json       template metadata and screenshot paths
+jamstacks/screenshots.json  capture viewport, hashes and sizes
+jamstacks/home-light.jpg    light homepage preview
+jamstacks/home-dark.jpg     dark homepage preview
+jamstacks/config.test.mjs   source-template publishing checks
+```
+
+Run `node --test jamstacks/config.test.mjs` when maintaining the source template.
+When creating a customer website, the whole `jamstacks/` folder can be removed.
+Normal `npm test`, type checking, builds and the Pages workflow do not depend on it.
+Keep `site.config.json`, the website's embed integration and `.github/workflows/pages.yml`;
+these belong to the customer website and continue to work without gallery metadata.
